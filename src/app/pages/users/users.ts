@@ -10,4 +10,6 @@ import { USERS } from '../../shared/users';
 })
 export class Users {
   readonly users = USERS;
+  // у каждой ссылки свой query-параметр — в детали видно, как меняется ?tab=
+  readonly tabs = ['posts', 'photos', 'likes'];
 }

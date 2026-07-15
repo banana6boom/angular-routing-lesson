@@ -6,6 +6,11 @@
   <label class="toggle"><input type="checkbox" checked /> Автосохранение</label>
 </section>
 
-<a class="btn" routerLink="/settings/profile">Открыть профиль</a>
+<div class="actions">
+  <a class="btn" routerLink="profile">Открыть профиль</a>
+  <button class="btn btn-secondary" type="button" (click)="openResetConfirm()">
+    Сбросить настройки
+  </button>
+</div>
 
 <router-outlet />

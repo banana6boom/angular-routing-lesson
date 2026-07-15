@@ -1,13 +1,19 @@
 <header class="app-header">
   <span class="brand">🧭 Routing Demo</span>
   <nav>
-    <a routerLink="/home">Главная</a>
-    <a routerLink="/about">О приложении</a>
-    <a routerLink="/settings">Настройки</a>
-    <a routerLink="/users">Пользователи</a>
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Главная</a>
+    <a routerLink="/about" routerLinkActive="active">О приложении</a>
+    <a routerLink="/settings" routerLinkActive="active">Настройки</a>
+    <a routerLink="/users" routerLinkActive="active">Пользователи</a>
+    <!-- открытие named outlet через routerLink: primary-сегменты URL не меняются -->
+    <a [routerLink]="[{ outlets: { widget: ['help'] } }]" routerLinkActive="active">❓ Справка</a>
   </nav>
 </header>
 
-<main class="page">
-  <router-outlet />
-</main>
+<div class="layout">
+  <main class="page">
+    <router-outlet />
+    <router-outlet name="modal" />
+  </main>
+  <router-outlet name="widget" />
+</div>

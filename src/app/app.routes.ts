@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Settings } from './pages/settings/settings';
 import { NotFound } from './pages/not-found/not-found';
+import { ConfirmDialog } from './pages/dialogs/confirm-dialog';
+import { HelpWidget } from './pages/widgets/help-widget';
 import { FeatureFlagsService } from './shared/feature-flags';
 
 // Порядок: пустой → статические → параметризованные → wildcard (слайд 20)
@@ -42,5 +44,9 @@ export const appRoutes: Routes = [
         ? `/users/${params['id']}`
         : '/home',
   },
+  // именованный outlet: рендерится в <router-outlet name="modal" />, URL — /...(modal:confirm)
+  { path: 'confirm', component: ConfirmDialog, outlet: 'modal' },
+  // второй именованный outlet: встроенный виджет, а не оверлей — /...(widget:help)
+  { path: 'help', component: HelpWidget, outlet: 'widget' },
   { path: '**', component: NotFound, title: 'Страница не найдена' },
 ];

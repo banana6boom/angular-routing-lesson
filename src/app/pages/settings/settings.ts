@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -7,4 +7,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './settings.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Settings {}
+export class Settings {
+  private router = inject(Router);
+
+  openResetConfirm() {
+    this.router.navigate([{ outlets: { modal: ['confirm'] } }]);
+  }
+}
