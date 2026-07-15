@@ -3,7 +3,7 @@
 <section class="card">
   <ul class="user-list">
     @for (user of users; track user.id) {
-      <li>{{ user.name }}</li>
+      <li><a [routerLink]="['/users', user.id]">{{ user.name }}</a></li>
     }
   </ul>
 </section>
