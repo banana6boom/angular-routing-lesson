@@ -1,6 +1,31 @@
-<h1>🧑‍💻 Пользователь</h1>
+<h1>🧑‍💻 {{ user()?.name ?? 'Пользователь не найден' }}</h1>
 
 <section class="card">
-  <p class="muted">Карточка пользователя.</p>
-  <button class="btn" type="button" (click)="edit()">Редактировать</button>
+  <dl class="kv">
+    <dt>snapshot — idOnce</dt>
+    <dd><code>{{ idOnce }}</code></dd>
+    <dt>поток paramMap — idFromStream</dt>
+    <dd><code>{{ idFromStream() }}</code></dd>
+    <dt>input binding — id</dt>
+    <dd><code>{{ id() }}</code></dd>
+    <dt>поток queryParamMap — tabFromStream</dt>
+    <dd><code>{{ tabFromStream() }}</code></dd>
+    <dt>input binding — tab</dt>
+    <dd><code>{{ tab() }}</code></dd>
+  </dl>
 </section>
+
+<section class="card">
+  <p class="muted">Перейти к другому пользователю (компонент не пересоздаётся):</p>
+  <ul class="user-list">
+    @for (u of users; track u.id; let i = $index) {
+      <li>
+        <a [routerLink]="['/users', u.id]" [queryParams]="{ tab: tabs[i] }">
+          {{ u.name }} <span class="muted">?tab={{ tabs[i] }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>
+
+<button class="btn" type="button" (click)="edit()">Редактировать</button>

@@ -11,6 +11,9 @@
   <button class="btn btn-secondary" type="button" (click)="openResetConfirm()">
     Сбросить настройки
   </button>
+  <button class="btn btn-secondary" type="button" (click)="togglePlan()">
+    Сменить план ({{ plan() }})
+  </button>
 </div>
 
-<router-outlet />
+<router-outlet [routerOutletData]="{ plan: plan() }" />
