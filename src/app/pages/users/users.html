@@ -1,0 +1,9 @@
+<h1>👥 Пользователи</h1>
+
+<section class="card">
+  <ul class="user-list">
+    @for (user of users; track user.id) {
+      <li>{{ user.name }}</li>
+    }
+  </ul>
+</section>

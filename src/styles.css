@@ -1,0 +1,302 @@
+/* Дизайн-токены — тёмная тема «глубина и свечение» (indigo → cyan) */
+:root {
+  --accent: #818cf8;
+  --accent-grad: linear-gradient(90deg, #6366f1, #38bdf8);
+  --accent-soft: rgba(99, 102, 241, 0.18);
+  --bg-dark: #0c1226;
+  --surface: linear-gradient(180deg, rgba(34, 43, 82, 0.85), rgba(26, 33, 66, 0.85));
+  --surface-border: rgba(129, 140, 248, 0.26);
+  --text: #e6eaf6;
+  --muted: #8f9ac0;
+  --divider: #2c3663;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* фиксированный градиент: тёмно-синий с фиолетовым подтоном внизу */
+  background: linear-gradient(160deg, #0c1226 0%, #141b3a 55%, #1a1440 100%) fixed;
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  /* крупный кегль: демо показывается на проекторе */
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+code,
+kbd {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+  font-size: 0.9em;
+  background: rgba(12, 18, 38, 0.7);
+  border: 1px solid var(--surface-border);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+  /* сплошной цвет: градиентная заливка текста ломает эмодзи-иконки в заголовках */
+  color: #eef1ff;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ── Шапка приложения ─────────────────────────────────── */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.9rem 2rem;
+  background: rgba(17, 23, 48, 0.65);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Меню (разметка появится в LIVE 1 — классы готовы заранее) */
+.app-header nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.app-header nav a {
+  color: #a9b2d3;
+  text-decoration: none;
+  padding: 0.35rem 0.85rem;
+  border-radius: 10px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.app-header nav a:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.app-header nav a.active {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.4), rgba(56, 189, 248, 0.28));
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.4);
+}
+
+/* ── Контент страниц ──────────────────────────────────── */
+
+.page {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Раскладка «контент + виджет» (named outlet "widget", LIVE 4) */
+.layout {
+  display: flex;
+  align-items: flex-start;
+}
+
+.layout .page {
+  flex: 1;
+  min-width: 0;
+}
+
+app-help-widget {
+  display: block;
+  flex: 0 0 19rem;
+  margin: 2rem 2rem 2rem 0;
+}
+
+.help-widget {
+  padding: 1.2rem 1.4rem;
+}
+
+.help-widget h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.15rem;
+}
+
+.help-list {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+  font-size: 0.85em;
+}
+
+.help-list li {
+  margin: 0.4rem 0;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 12px 36px rgba(8, 11, 30, 0.55);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.btn {
+  display: inline-block;
+  background: var(--accent-grad);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.4rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none; /* .btn бывает и ссылкой <a> */
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Ряд кнопок-действий на странице */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 26px rgba(56, 189, 248, 0.42);
+}
+
+.btn-secondary {
+  background: rgba(129, 140, 248, 0.18);
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: rgba(129, 140, 248, 0.3);
+  box-shadow: none;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--accent-grad);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.1em 0.8em;
+  font-size: 0.8em;
+  font-weight: 700;
+  vertical-align: middle;
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Список пользователей на главной */
+.user-list {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.user-list li {
+  margin: 0.35rem 0;
+}
+
+/* Пары «подпись — значение» (карточки пользователя/профиля) */
+.kv {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1.2rem;
+  margin: 0;
+}
+
+.kv dt {
+  color: var(--muted);
+}
+
+.kv dd {
+  margin: 0;
+}
+
+/* Фейк-переключатели на странице настроек */
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.45rem 0;
+  cursor: pointer;
+}
+
+.toggle input {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--accent);
+}
+
+/* ── Страница 404 ─────────────────────────────────────── */
+
+.not-found {
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.not-found h1 {
+  font-size: 7rem;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 0.05em;
+  /* здесь эмодзи нет — гигантской цифре градиент со свечением к лицу */
+  background: linear-gradient(90deg, #818cf8, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 24px rgba(99, 102, 241, 0.45));
+}
+
+.not-found p {
+  font-size: 1.4rem;
+  margin: 0.5rem 0 2rem;
+}
+
+/* ── Модальное окно (overlay поверх контента) ─────────── */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 20, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  background: linear-gradient(180deg, #222b52, #1a2142);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  max-width: 26rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.15);
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Node.js & TypeScript",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:4-24-bookworm",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": { "zsh": { "path": "/bin/zsh" } }
+      },
+      "extensions": []
+    }
+  },
+  "initializeCommand": "mkdir -p ${localEnv:HOME}/.claude ${localEnv:HOME}/.config/ccstatusline",
+  "containerEnv": {
+    "HOST_USER_HOME": "${localEnv:HOME}"
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "mounts": [
+    "source=${localEnv:HOME}/.claude,target=/home/node/.claude,type=bind",
+    "source=${localEnv:HOME}/.config/ccstatusline,target=/home/node/.config/ccstatusline,type=bind"
+  ]
+}
